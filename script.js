@@ -83,7 +83,7 @@ function fixSubtitle() {
         fileReader.readAsText(fileToLoad, 'ISO-8859-1');
 
     }).then(subtitle => {
-        downloadFixedSubtitle(subtitle.text, subtitle.fileName, "text/plain");
+        downloadFixedSubtitle(subtitle.text, subtitle.fileName);
         let downloadLink = document.getElementById("download-link");
         downloadLink.click();
     }).catch(error => {
@@ -91,9 +91,9 @@ function fixSubtitle() {
     });
 }
 
-function downloadFixedSubtitle(subtitleText, subtitleName, type) {
+function downloadFixedSubtitle(subtitleText, subtitleName) {
     var downloadLink = document.getElementById("download-link");
-    var file = new Blob([subtitleText], { type: type });
+    var file = new Blob([subtitleText], { type: "text/plain" });
     downloadLink.href = URL.createObjectURL(file);
     downloadLink.download = subtitleName;
 }
