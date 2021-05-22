@@ -15,9 +15,8 @@
     <tr>
         <td>Select a File to Load:</td>
         <td><input type="file" id="fileToLoad"></td>
-        <td><button onclick="loadFileAsText()">Load Selected File</button>
         <td>
-        <td><button id="button2" onclick="transformText()">Transform text</button></td>
+        <td><button id="submit-button" onclick="fixSubtitle()">Transform text</button></td>
     </tr>
     <hr>
     <a href="" id="download-link">click here to download your file</a>
@@ -25,37 +24,43 @@
     <script>
         let subtitleText = "";
         let subtitleFileName = "";
-        let subtitleFileExtension = "";
 
         const fixedSubtitlePrefix = "PopravljenPrevod_";
 
-        function loadFileAsText() {
-            let fileToLoad = document.getElementById("fileToLoad").files[0];
+        function fixSubtitle() {
+            const loadFileAsText = new Promise(function (resolve, reject) {
 
-            let fileReader = new FileReader();
+                let fileToLoad = document.getElementById("fileToLoad").files[0];
 
-            fileReader.onload = function (fileLoadedEvent) {
-                subtitleText = fileLoadedEvent.target.result;
-                subtitleFileName = fixedSubtitlePrefix + fileToLoad.name;
+                let fileReader = new FileReader();
 
-                console.log("Loaded subtitle: " + subtitleText);
-            }
+                fileReader.onload = function (fileLoadedEvent) {
+                    subtitleText = fileLoadedEvent.target.result;
+                    subtitleFileName = fixedSubtitlePrefix + fileToLoad.name;
 
-            fileReader.readAsText(fileToLoad, 'ISO-8859-1');
-        }
+                    console.log(subtitleFileName);
 
-        function transformText() {
-            const characterCodes = [230, 232, 240, 198, 200, 208];
-            const characters = ['ć', 'č', 'đ', 'Ć', 'Č', 'Đ'];
+                    const characterCodes = [230, 232, 240, 198, 200, 208];
+                    const characters = ['ć', 'č', 'đ', 'Ć', 'Č', 'Đ']
 
-            for (let i = 0; i < characterCodes.length; i++) {
-                let pattern = String.fromCharCode(characterCodes[i]),
-                    result = new RegExp(pattern, "g");
-                subtitleText = subtitleText.replace(result, characters[i]);
-            }
+                    for (let i = 0; i < characterCodes.length; i++) {
+                        let pattern = String.fromCharCode(characterCodes[i]),
+                            result = new RegExp(pattern, "g");
+                        subtitleText = subtitleText.replace(result, characters[i]);
+                    }
 
-            console.log("Ispravljeno: " + subtitleText);
-            downloadFixedSubtitle(subtitleText, subtitleFileName, "text/plain");
+                    console.log("Ispravljen prevod: " + subtitleText);
+
+                    resolve("Text transformed");
+                };
+
+                fileReader.readAsText(fileToLoad, 'ISO-8859-1');
+
+            }).then(subtitle => {
+                downloadFixedSubtitle(subtitleText, subtitleFileName, "text/plain");
+            }).catch(error => {
+                console.log("greska: ", error);
+            });
         }
 
         function downloadFixedSubtitle(subtitleText, subtitleName, type) {
