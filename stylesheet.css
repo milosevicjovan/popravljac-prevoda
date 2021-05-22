@@ -1,14 +1,5 @@
-body {
-    background-image: url('/assets/background.jpg'); 
-    background-size:auto;
-}
-
 .navbar {
     box-shadow: 0px 10px 8px -6px rgba(0,0,0,.5);
-}
-
-.navbar-brand:hover {
-    opacity: 0.8;
 }
 
 h2 {
