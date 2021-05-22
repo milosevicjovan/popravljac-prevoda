@@ -77,4 +77,44 @@ a {
     padding: 5px;
 }
 
+@media only screen and (max-device-width: 1380px) {
+    span {
+        color: white;
+    }
 
+    #description-div
+    {
+        background: rgba(4, 0, 10, 0.5);
+        color: white;
+        width: 100%;
+        box-shadow: 0px 10px 8px -6px rgba(0,0,0,.5);
+    }
+
+    #main-col {
+        width: 100%;
+        text-align: center;
+    }
+
+    #form-container {
+        width: 100%;
+    }
+
+    #adv-left {
+        width: 0px;
+        display: none;
+    }
+
+    #adv-right {
+        width: 0px;
+        display: none;
+    }
+
+    h2 {
+        font-size: 30px;
+        text-shadow:
+        -0.5px -0.5px 0 #000,
+        0.5px -0.5px 0 #000,
+        -0.5px 0.5px 0 #000,
+        0.5px 0.5px 0 #000;  
+    }
+}
