@@ -11,8 +11,6 @@
 
 <body>
     <html xmlns="http://www.w3.org/1999/xhtml">
-
-    <textarea id="2" name="y" style="width:400px;height:150px;"></textarea>
     <br>
     <tr>
         <td>Select a File to Load:</td>
@@ -22,11 +20,14 @@
         <td><button id="button2" onclick="transformText()">Transform text</button></td>
     </tr>
     <hr>
-    <a href="" id="a">click here to download your file</a>
-    <button onclick="download(newSub, 'corrected.srt', 'text/plain')">Download</button>
+    <a href="" id="download-link">click here to download your file</a>
 
     <script>
-        var text = "";
+        let subtitleText = "";
+        let subtitleFileName = "";
+        let subtitleFileExtension = "";
+
+        const fixedSubtitlePrefix = "PopravljenPrevod_";
 
         function loadFileAsText() {
             let fileToLoad = document.getElementById("fileToLoad").files[0];
@@ -34,10 +35,10 @@
             let fileReader = new FileReader();
 
             fileReader.onload = function (fileLoadedEvent) {
-                text = fileLoadedEvent.target.result;
+                subtitleText = fileLoadedEvent.target.result;
+                subtitleFileName = fixedSubtitlePrefix + fileToLoad.name;
 
-                console.log("Loaded subtitle: " + text);
-                document.getElementById("2").value = text;
+                console.log("Loaded subtitle: " + subtitleText);
             }
 
             fileReader.readAsText(fileToLoad, 'ISO-8859-1');
@@ -62,22 +63,22 @@
             var pattern6 = String.fromCharCode(208),
                 re6 = new RegExp(pattern6, "g");
 
-            text = text.replace(re1, 'ć');
-            text = text.replace(re2, 'č');
-            text = text.replace(re3, 'đ');
-            text = text.replace(re4, 'Ć');
-            text = text.replace(re5, 'Č');
-            text = text.replace(re6, 'Đ');
+            subtitleText = subtitleText.replace(re1, 'ć');
+            subtitleText = subtitleText.replace(re2, 'č');
+            subtitleText = subtitleText.replace(re3, 'đ');
+            subtitleText = subtitleText.replace(re4, 'Ć');
+            subtitleText = subtitleText.replace(re5, 'Č');
+            subtitleText = subtitleText.replace(re6, 'Đ');
 
-            console.log("Ispravljeno: " + text);
-            download(text, "corrected.srt", "text/plain");
+            console.log("Ispravljeno: " + subtitleText);
+            downloadFixedSubtitle(subtitleText, subtitleFileName, "text/plain");
         }
 
-        function download(text, name, type) {
-            var a = document.getElementById("a");
-            var file = new Blob([text], { type: type });
-            a.href = URL.createObjectURL(file);
-            a.download = name;
+        function downloadFixedSubtitle(subtitleText, subtitleName, type) {
+            var downloadLink = document.getElementById("download-link");
+            var file = new Blob([subtitleText], { type: type });
+            downloadLink.href = URL.createObjectURL(file);
+            downloadLink.download = subtitleName;
         }
 
     </script>
