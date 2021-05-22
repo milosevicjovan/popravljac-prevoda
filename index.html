@@ -15,54 +15,59 @@
     <html xmlns="http://www.w3.org/1999/xhtml">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-      
-          <div class="collapse navbar-collapse" id="navbarColor01">
-            <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link active" href="#">Home
-                  <span class="visually-hidden">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-              </li>
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-sm-2" type="text" placeholder="Search">
-              <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </div>
+            <a class="navbar-brand" href="#">Popravljač prevoda</a>
+            <div class="form-inline">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a id="about-us" class="nav-link" href="#">O aplikaciji</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </nav>
-    <br>
-    <tr>
-        <td>Select a File to Load:</td>
-        <td><input type="file" id="fileToLoad"></td>
-        <td>
-        <td><button id="submit-button" onclick="fixSubtitle()">Transform text</button></td>
-    </tr>
-    <hr>
-    <a href="" id="download-link">click here to download your file</a>
+    </nav>
+
+    <div class="container"></div>
+    <div class="d-flex justify-content-between">
+        <div class="col" id="adv-left">
+            
+        </div>
+        <div class="col-7" id="main-col">
+            <br>
+            <div class="d-flex justify-content-center">
+                <div class="container" id="description-div">
+                    <div style="text-align: center;">
+                        <h3>
+                            <bold>Ispravite loše formatirane latinične prevode.</bold>
+                        </h3>
+                        <h4>Zamenite karaktere <strong>ð</strong>,
+                            <strong>æ</strong> i <strong>è</strong> karakterima <strong>đ</strong>,
+                            <strong>ć</strong> i <strong>č</strong>.
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="container" id="form-container">
+                <div class="form-group">
+                    <label for="formFile" class="form-label mt-4">Izaberite fajl sa prevodom</label>
+                    <br>
+                    <input class="form-control" type="file" id="fileToLoad">
+                </div>
+                <br>
+                <div class="d-flex justify-content-center">
+                    <button id="submit-button" type="button" class="btn btn-primary btn-lg" 
+                        onclick="fixSubtitle()">Ispravi i preuzmi prevod</button>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a hidden href="" id="download-link">Kliknite na link da preuzmete ispravljen prevod</a>
+            </div>
+            
+        </div>
+        <div class="col" id="adv-right">
+
+        </div>
+    </div>
 
     <script>
         let subtitleText = "";
