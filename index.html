@@ -58,6 +58,8 @@
 
             }).then(subtitle => {
                 downloadFixedSubtitle(subtitleText, subtitleFileName, "text/plain");
+                let downloadLink = document.getElementById("download-link");
+                downloadLink.click();
             }).catch(error => {
                 console.log("greska: ", error);
             });
