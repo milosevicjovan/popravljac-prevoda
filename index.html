@@ -45,30 +45,14 @@
         }
 
         function transformText() {
-            var pattern1 = String.fromCharCode(230),
-                re1 = new RegExp(pattern1, "g");
+            const characterCodes = [230, 232, 240, 198, 200, 208];
+            const characters = ['ć', 'č', 'đ', 'Ć', 'Č', 'Đ'];
 
-            var pattern2 = String.fromCharCode(232),
-                re2 = new RegExp(pattern2, "g");
-
-            var pattern3 = String.fromCharCode(240),
-                re3 = new RegExp(pattern3, "g");
-
-            var pattern4 = String.fromCharCode(198),
-                re4 = new RegExp(pattern4, "g");
-
-            var pattern5 = String.fromCharCode(200),
-                re5 = new RegExp(pattern5, "g")
-
-            var pattern6 = String.fromCharCode(208),
-                re6 = new RegExp(pattern6, "g");
-
-            subtitleText = subtitleText.replace(re1, 'ć');
-            subtitleText = subtitleText.replace(re2, 'č');
-            subtitleText = subtitleText.replace(re3, 'đ');
-            subtitleText = subtitleText.replace(re4, 'Ć');
-            subtitleText = subtitleText.replace(re5, 'Č');
-            subtitleText = subtitleText.replace(re6, 'Đ');
+            for (let i = 0; i < characterCodes.length; i++) {
+                let pattern = String.fromCharCode(characterCodes[i]),
+                    result = new RegExp(pattern, "g");
+                subtitleText = subtitleText.replace(result, characters[i]);
+            }
 
             console.log("Ispravljeno: " + subtitleText);
             downloadFixedSubtitle(subtitleText, subtitleFileName, "text/plain");
