@@ -1,0 +1,52 @@
+.navbar {
+    box-shadow: 0px 10px 8px -6px rgba(0,0,0,.5);
+}
+
+h2 {
+    font-size: 40px;
+    text-shadow:
+    -0.5px -0.5px 0 #000,
+    0.5px -0.5px 0 #000,
+    -0.5px 0.5px 0 #000,
+    0.5px 0.5px 0 #000;  
+}
+
+.form-group {
+    font-size: larger; 
+    text-align: center;
+}
+
+.form-control {
+    font-size: larger;
+}
+
+.form-label.mt-4 {
+    color: white;
+}
+ 
+
+#submit-button {
+    width: 100%;
+}
+
+#description-div {
+    padding: 10px;
+    background: rgba(4, 0, 10, 0.0);
+    border-radius: 10px;
+}
+
+#form-container {
+    background: rgba(4, 0, 10, 0.5);  
+    padding: 10px;
+    box-shadow: 0px 10px 8px -6px rgba(0,0,0,.5);
+    border-radius: 10px;
+}
+
+#main-col {
+    padding: 10px;
+}
+
+#photo-credit {
+    font-size: 12px;
+}
+
