@@ -37,7 +37,7 @@ function fixSubtitle() {
 
         if (!fileToLoad) {
             document.getElementById("fileToLoad").focus();
-            displayError("Fajl sa prevodom nije izabran!", "Morate prvo izabrati fajl.")
+            displayError("Fajl sa prevodom nije izabran!", "Morate prvo izabrati fajl.");
             return;
         }
 
@@ -47,9 +47,6 @@ function fixSubtitle() {
             subtitleText = fileLoadedEvent.target.result;
             subtitleFileName = fixedSubtitlePrefix + fileToLoad.name;
             subtitleFileExtension = subtitleFileName.split('.').pop().toLowerCase();
-
-            console.log(subtitleFileName);
-            console.log(subtitleFileExtension);
 
             if (!validExtensions.includes(subtitleFileExtension)) {
                 resetSettings();
@@ -75,8 +72,6 @@ function fixSubtitle() {
                 subtitleText = subtitleText.replace(result, characters[i]);
             }
 
-            console.log("Ispravljen prevod: " + subtitleText);
-
             resolve({ "fileName": subtitleFileName, "text": subtitleText });
         };
 
@@ -92,8 +87,8 @@ function fixSubtitle() {
 }
 
 function downloadFixedSubtitle(subtitleText, subtitleName) {
-    var downloadLink = document.getElementById("download-link");
-    var file = new Blob([subtitleText], { type: "text/plain" });
+    let downloadLink = document.getElementById("download-link");
+    let file = new Blob([subtitleText], { type: "text/plain" });
     downloadLink.href = URL.createObjectURL(file);
     downloadLink.download = subtitleName;
 }
