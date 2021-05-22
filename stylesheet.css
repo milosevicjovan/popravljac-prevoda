@@ -77,6 +77,23 @@ a {
     padding: 5px;
 }
 
+@media only screen and (max-width: 720px) {
+    body {
+        background-image: url('/assets/background_mobile.jpg');
+    }
+
+    .footer {
+        position: absolute;
+        background: rgba(4, 0, 10, 0.7);
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .footer {
+        display: none;
+    }
+}
+
 @media only screen and (max-device-width: 1380px) {
     span {
         color: white;
