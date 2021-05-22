@@ -12,6 +12,75 @@
 <body>
     <html xmlns="http://www.w3.org/1999/xhtml">
 
+    <textarea id="2" name="y" style="width:400px;height:150px;"></textarea>
+    <br>
+    <tr>
+        <td>Select a File to Load:</td>
+        <td><input type="file" id="fileToLoad"></td>
+        <td><button onclick="loadFileAsText()">Load Selected File</button>
+        <td>
+        <td><button id="button2" onclick="transformText()">Transform text</button></td>
+    </tr>
+    <hr>
+    <a href="" id="a">click here to download your file</a>
+    <button onclick="download(newSub, 'corrected.srt', 'text/plain')">Download</button>
+
+    <script>
+        var text = "";
+
+        function loadFileAsText() {
+            let fileToLoad = document.getElementById("fileToLoad").files[0];
+
+            let fileReader = new FileReader();
+
+            fileReader.onload = function (fileLoadedEvent) {
+                text = fileLoadedEvent.target.result;
+
+                console.log("Loaded subtitle: " + text);
+                document.getElementById("2").value = text;
+            }
+
+            fileReader.readAsText(fileToLoad, 'ISO-8859-1');
+        }
+
+        function transformText() {
+            var pattern1 = String.fromCharCode(230),
+                re1 = new RegExp(pattern1, "g");
+
+            var pattern2 = String.fromCharCode(232),
+                re2 = new RegExp(pattern2, "g");
+
+            var pattern3 = String.fromCharCode(240),
+                re3 = new RegExp(pattern3, "g");
+
+            var pattern4 = String.fromCharCode(198),
+                re4 = new RegExp(pattern4, "g");
+
+            var pattern5 = String.fromCharCode(200),
+                re5 = new RegExp(pattern5, "g")
+
+            var pattern6 = String.fromCharCode(208),
+                re6 = new RegExp(pattern6, "g");
+
+            text = text.replace(re1, 'ć');
+            text = text.replace(re2, 'č');
+            text = text.replace(re3, 'đ');
+            text = text.replace(re4, 'Ć');
+            text = text.replace(re5, 'Č');
+            text = text.replace(re6, 'Đ');
+
+            console.log("Ispravljeno: " + text);
+            download(text, "corrected.srt", "text/plain");
+        }
+
+        function download(text, name, type) {
+            var a = document.getElementById("a");
+            var file = new Blob([text], { type: type });
+            a.href = URL.createObjectURL(file);
+            a.download = name;
+        }
+
+    </script>
 </body>
 
 </html>
