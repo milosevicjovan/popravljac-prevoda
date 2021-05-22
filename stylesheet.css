@@ -1,5 +1,14 @@
+body {
+    background-image: url('/assets/background.jpg'); 
+    background-size:auto;
+}
+
 .navbar {
     box-shadow: 0px 10px 8px -6px rgba(0,0,0,.5);
+}
+
+.navbar-brand:hover {
+    opacity: 0.8;
 }
 
 h2 {
@@ -24,6 +33,24 @@ h2 {
     color: white;
 }
  
+.footer {
+    background: rgba(4, 0, 10, 0); 
+    width: 100%; 
+    position: fixed; 
+    left:0; 
+    bottom:0; 
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+#credits {
+    text-align: right; 
+    padding-right: 15px; 
+    padding-top: 15px;
+}
 
 #submit-button {
     width: 100%;
@@ -49,4 +76,9 @@ h2 {
 #photo-credit {
     font-size: 12px;
 }
+
+#social-div {
+    padding: 5px;
+}
+
 
