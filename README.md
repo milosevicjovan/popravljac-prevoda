@@ -1,2 +1,2 @@
-# popravljac-prevoda
-Web aplikacija za ispravljanje latiničnih karaktera u ANSI prevodima za filmove i serije
+# Popravljač prevoda
+#### Jednostavna web aplikacija za ispravljanje latiničnih karaktera **(ð, æ i è)** u ANSI prevodima za filmove i serije. ####
